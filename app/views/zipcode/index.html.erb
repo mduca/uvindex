@@ -10,7 +10,8 @@
 		url: "/zip/" + document.getElementById("zipcode").value,
 		data: {},
 		success: function(response){
-			var res = response["b"];
+			//var res = response["b"];
+      var res = response
 			document.getElementById("results").innerHTML = res;
 	}});
 }
