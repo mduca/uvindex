@@ -1,0 +1,17 @@
+<h1>Hi!</h1>
+<input type=text id=zipcode>
+<input type=button value=clickme onclick='clicked()' />
+
+<div id='results'></div>
+
+<script>
+	function clicked(){
+	$.ajax({
+		url: "/zip/" + document.getElementById("zipcode").value,
+		data: {},
+		success: function(response){
+			var res = response["b"];
+			document.getElementById("results").innerHTML = res;
+	}});
+}
+</script>
