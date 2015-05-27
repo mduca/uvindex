@@ -2,7 +2,10 @@
 <input type=text id=zipcode>
 <input type=button value=clickme onclick='clicked()' />
 
-<div id='results'></div>
+<br />
+<div id='city'></div>
+<br />
+<div id='uvdata'></div>
 
 <script>
 	function clicked(){
@@ -11,8 +14,20 @@
 		data: {},
 		success: function(response){
 			//var res = response["b"];
-      var res = response
-			document.getElementById("results").innerHTML = res;
+      console.log(response);
+      var city = JSON.parse(response["city"]);
+      console.log(city.city)
+
+      var uvdata = JSON.parse(response["data"]);
+      var chartData = [];
+      for (var i=0; i < uvdata.length; i++) {
+        var obj = uvdata[i];
+        chartData.push(obj["UV_VALUE"]);
+      }
+      console.log(chartData);
+
+
+      document.getElementById("city").innerHTML = "<h1>" + city.city + ", " + city.state + "</h1>";
 	}});
 }
 </script>

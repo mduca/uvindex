@@ -11,13 +11,13 @@ class ZipcodeController < ApplicationController
 
       @data = Hash.new
       @data["zipcode"] = params["zipcode"]
-      @data["data"] = getUvindex(url).to_json
-      @data["city"] = getCity(params["zipcode"]).to_json
+      @data["city"] = getCity(params["zipcode"])
+      @data["data"] = getUvindex(url)
 
       data = getUvindex url
       puts data
       #render json: data.to_json
-      render json: @data["city"]
+      render json: @data
     end
 
 	  @res = Hash.new
