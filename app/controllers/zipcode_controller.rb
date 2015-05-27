@@ -7,11 +7,17 @@ class ZipcodeController < ApplicationController
   def show
 
     if params["zipcode"]
-      zc = params["zipcode"]
-      url = "http://iaspub.epa.gov/enviro/efservice/getEnvirofactsUVHOURLY/ZIP/" + zc +"/JSON" 
+      url = "http://iaspub.epa.gov/enviro/efservice/getEnvirofactsUVHOURLY/ZIP/" + params["zipcode"]  +"/JSON" 
+
+      @data = Hash.new
+      @data["zipcode"] = params["zipcode"]
+      @data["data"] = getUvindex(url).to_json
+      @data["city"] = getCity(params["zipcode"]).to_json
+
       data = getUvindex url
       puts data
-      render json: data.to_json
+      #render json: data.to_json
+      render json: @data["city"]
     end
 
 	  @res = Hash.new
@@ -31,5 +37,11 @@ class ZipcodeController < ApplicationController
     uri = URI(url) 
     data = Net::HTTP.get(uri)
   end
+
+  def getCity zipcode
+    uri = URI("http://zip.getziptastic.com/v2/US/" + zipcode)
+    data = Net::HTTP.get(uri)
+  end
+
 
 end
