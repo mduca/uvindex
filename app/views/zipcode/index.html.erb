@@ -6,6 +6,10 @@
 <div id='city'></div>
 <br />
 <div id='uvdata'></div>
+<br />
+<br />
+<br />
+<div id="chart"></div>
 
 <script>
 	function clicked(){
@@ -13,21 +17,40 @@
 		url: "/zip/" + document.getElementById("zipcode").value,
 		data: {},
 		success: function(response){
-			//var res = response["b"];
+      var chartData = [];
+      chartData.push('UV Index #2')
+
       console.log(response);
       var city = JSON.parse(response["city"]);
       console.log(city.city)
 
       var uvdata = JSON.parse(response["data"]);
-      var chartData = [];
       for (var i=0; i < uvdata.length; i++) {
         var obj = uvdata[i];
         chartData.push(obj["UV_VALUE"]);
       }
-      console.log(chartData);
 
 
       document.getElementById("city").innerHTML = "<h1>" + city.city + ", " + city.state + "</h1>";
-	}});
-}
+
+      console.log(chartData);
+
+      var chart = c3.generate({
+            bindto: '#chart',
+             data: {
+               columns: [
+                 chartData,
+               ],
+               type: 'spline',
+              },
+              axis: {
+                x: {
+                  type: 'category',
+                  categories: ['4am', '5am', '6am', '7am', '8am', '9am','10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm', '9pm','10pm', '11pm', '12am']
+                }
+              }
+      });
+  }});
+
+ }
 </script>
