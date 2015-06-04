@@ -7,6 +7,9 @@
 # Ignore bundler config.
 /.bundle
 
+# Ignore bower components
+vendor/
+
 # Ignore all logfiles and tempfiles.
 /log/*
 !/log/.keep
