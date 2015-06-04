@@ -12,4 +12,9 @@
  *
  *= require_tree .
  *= require_self
+ *= require bootstrap/dist/css/bootstrap.min
+ *= require bootstrap-material-design/dist/css/material
+ *= require bootstrap-material-design/dist/css/roboto
+ *= require bootstrap-material-design/dist/css/ripples
+ *= require c3/c3
  */

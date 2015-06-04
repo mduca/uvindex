@@ -6,9 +6,21 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">UV Index</a>
+    </div> 
+  </div>
+</nav>
 <body>
 
-<%= yield %>
+  
+<div class="text-center col-lg-12">
+  <div class="row">
+        <%= yield %>
+  </div>
+</div>
 
 </body>
 </html>
